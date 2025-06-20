@@ -1,5 +1,7 @@
 #include "drawing.h"
 #include "window.h"
+#include "font.h"
+
 void drawing::drawRect(float x, float y, float w, float h, color4_t color)
 {
 	glColor4f(color.r, color.g, color.b, color.a);
@@ -60,6 +62,58 @@ void drawing::fillCircle(float cx, float cy, float r, float segments, color4_t c
 	}
 
 	glEnd();
+}
+
+void drawing::drawDigit(float x, float y, float h, int digit, color4_t color)
+{
+	char* dg = font::digit[digit];
+	int w = h / 10;
+	for (int i = 0; i < 15; i++)
+	{
+		if (dg[i] == 0)continue;
+		switch (i)
+		{
+		case 0: {
+			drawing::drawRect(x - h / 4, y - h / 2, h / 2, w, color);
+			break;
+		}
+		case 1: {
+			drawing::drawRect(x - h / 4, y - h / 2, w, h/2, color);
+			break;
+		}
+		case 2: {
+			drawing::drawRect(x + h / 4, y - h / 2, w, h / 2, color);
+			break;
+		}
+		case 3: {
+			drawing::drawRect(x - h / 4, y, h / 2, w, color);
+			break;
+		}
+		case 4: {
+			drawing::drawRect(x - h / 4, y , w, h / 2, color);
+			break;
+		}
+		case 5: {
+			drawing::drawRect(x + h / 4, y, w, h / 2, color);
+			break;
+		}
+		case 6: {
+			drawing::drawRect(x - h / 4, y + h/2, h / 2, w, color);
+			break;
+		}
+		}
+	}
+}
+
+void drawing::drawText(float x, float y, float height, char* txt, color4_t color)
+{
+	if (txt == NULL)return;
+	int offset = 0;
+	for (int i=0;i<strlen(txt);i++)
+	{
+		drawing::drawDigit(x + offset, y, height, txt[i] - '0', color);
+		offset += height / 2 + height / 5;
+	}
 }
 
 void drawing::Begin()

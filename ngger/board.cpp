@@ -22,7 +22,13 @@ void board::Draw(){
 			utils::drawHeartRight(this->x + 18 + i * 20 + offset, this->y + 20, 20, 20);
 			offset += 10;
 		}
-	}
+	} 
+
+	//score
+	char score_str[255];
+	utils::intToString(score_str, this->player->score);
+	drawing::drawText(this->x + 20, 70, 25, score_str, { 1,1,1,1 });
+
 	player->draw();
 }
 void board::update(){

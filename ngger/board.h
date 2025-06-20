@@ -40,6 +40,7 @@ public:
 		this->deltaTime = 0;
 		asteroids.push_back(asteroid(50, 50, 20, 5, { 0,4 }, { 0,50 }, this));
 		this->asteroidDelay = ASTEROID_MAX_DELAY;
+		wnd->AddTextToDraw(text(150, 150, 20, 255, 0, 0, (char*)"dupsko"));
 	}
 
 	~board()

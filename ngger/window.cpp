@@ -1,4 +1,4 @@
-#include "window.h"
+﻿#include "window.h"
 #include "asteroid.h"
 #include <iostream>
 
@@ -22,6 +22,42 @@ LRESULT Wndproc(
 	case WM_LBUTTONUP:
 		wnd->keys[0] = 0;
 		break;
+	case WM_PAINT: {
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(hWnd, &ps);
+		for (auto& txt : wnd->texttoDraw) {
+			SetTextColor(hdc, RGB(txt.r, txt.g, txt.b));
+			SetBkMode(hdc, TRANSPARENT);
+			HFONT hFont = CreateFont(
+				txt.h,
+				0,
+				0,
+				0,
+				FW_EXTRALIGHT,
+				FALSE,
+				FALSE,
+				FALSE,
+				DEFAULT_CHARSET,
+				OUT_OUTLINE_PRECIS,
+				CLIP_DEFAULT_PRECIS,
+				CLEARTYPE_QUALITY,
+				VARIABLE_PITCH,
+				L"Arial"
+			);
+			HFONT hOldFont = (HFONT)SelectObject(hdc, hFont);
+			std::wstring text1 = L"dupa";
+			TextOut(hdc, txt.x, txt.y, text1.c_str(), text1.length());
+			RECT textRect = { 10, 100, 380, 200 }; // Lewo, Góra, Prawo, Dół
+			std::wstring text2 = L"To jest tekst narysowany funkcja DrawText. Mozna go wycentrowac.";
+
+			// Rysujemy tekst wyśrodkowany w prostokącie
+			DrawText(hdc, text2.c_str(), -1, &textRect, DT_CENTER | DT_VCENTER | DT_WORDBREAK);
+			SelectObject(hdc, hOldFont);
+			DeleteObject(hFont);
+			EndPaint(hWnd, &ps);
+			break;
+		}
+	}
 	}
 	return DefWindowProcA(hWnd, uMsg, wParam, lParam);
 }
@@ -99,6 +135,11 @@ void window::Draw()
 	SwapBuffers(this->hdc);
 	glFlush();
 
+}
+void window::AddTextToDraw(text txt)
+{
+	this->texttoDraw.push_back(txt);
+	redraw = true;
 }
 void window::InitGL()
 {

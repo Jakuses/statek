@@ -12,13 +12,17 @@ int main() {
 	{
 		float time_start = timeGetTime();
 		b.update();
-		wnd.Update();
 		drawing::Begin();
 		b.Draw();
 		drawing::End(&wnd);
 		float time_end = timeGetTime();
+		if (wnd.redraw)
+		{
+			RedrawWindow(wnd.ptr, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+			wnd.redraw = false;
+		}
+		wnd.Update();
 		b.deltaTime = (time_end - time_start)/1000; 
-		
 	}
 
 }

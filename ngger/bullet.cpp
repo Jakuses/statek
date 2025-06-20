@@ -32,7 +32,11 @@ void bullet::collisionsWithAsteroid()
 		{
 			this->_todelete = true;
 			asteroid.segments--;
-			if (asteroid.segments < 3) asteroid._todelete = true;
+			if (asteroid.segments < 3)
+			{
+				this->b->player->score += 10;
+				asteroid._todelete = true;
+			}
 
 		}
 	}

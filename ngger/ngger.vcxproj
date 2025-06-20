@@ -129,8 +129,10 @@
     <ClCompile Include="board.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="drawing.cpp" />
+    <ClCompile Include="font.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ship.cpp" />
+    <ClCompile Include="text.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
@@ -139,7 +141,9 @@
     <ClInclude Include="board.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="drawing.h" />
+    <ClInclude Include="font.h" />
     <ClInclude Include="ship.h" />
+    <ClInclude Include="text.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>

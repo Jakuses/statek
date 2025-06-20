@@ -21,6 +21,8 @@ public:
 	static void drawCircle(float x, float y, float r, float segments, color4_t color);
 	static void drawTriangle(vector2 pos1, vector2 pos2, vector2 pos3, color4_t color);
 	static void fillCircle(float cx, float cy, float r, float segments, color4_t color);
+	static void drawDigit(float x, float y, float height, int digit, color4_t color);
+	static void drawText(float x, float y, float height, char* text, color4_t color);
 	static void Begin();
 	static void End(window* wnd);
 };
