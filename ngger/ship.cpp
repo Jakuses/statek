@@ -4,6 +4,7 @@
 #include "board.h"
 #include <iostream>
 #include "bullet.h"
+#include <cmath>
 using namespace std;
 ship::ship(float x, float y, float w, float h, window* wnd, board* b)
 	:x(x), y(y), w(w), h(h), wnd(wnd), speedMax(150.f), speedx({ 0,0 }), speedy({ 0,0 }) {
@@ -15,9 +16,9 @@ ship::ship(float x, float y, float w, float h, window* wnd, board* b)
 }
 void ship::draw()
 {
-	drawing::drawRect(this->x-0.5f*this->w, this->y-0.f*this->w,			this->w*0.1f,this->h*0.5f,{0,1,1,1});
+	drawing::drawRect(this->x-0.5f*this->w, this->y-0.f*this->w,		this->w*0.1f,this->h*0.5f,{0,1,1,1});
 	drawing::drawRect(this->x-0.4f*this->w, this->y+0.15f*this->w,		this->w*0.8f,this->h*0.1f,{0,1,1,1});
-	drawing::drawRect(this->x+0.4f*this->w, this->y-0.f*this->w,			this->w*0.1f,this->h*0.5f,{0,1,1,1});
+	drawing::drawRect(this->x+0.4f*this->w, this->y-0.f*this->w,		this->w*0.1f,this->h*0.5f,{0,1,1,1});
 	drawing::drawRect(this->x-0.2f*this->w, this->y-0.2f*this->w,		this->w*0.4f,this->h*0.4f,{0,1,1,1});
 	drawing::drawRect(this->x-0.1f*this->w, this->y-0.5f*this->w,		this->w*0.2f,this->h*0.3f,{0,1,1,1});
 }
@@ -93,14 +94,19 @@ void ship::shoot()
 
 void ship::collisionWithAsteroids()
 {
+	vector2 playerCenter{ x,y };
+	float playerR = std::min<float>(w / 2, h / 2);
+	//drawing::Begin(); hitbox
 	for (auto& asteroid : this->b->asteroids)
 	{
-		if (this->x + this->w /2 > asteroid.x - asteroid.r && this->x - this->w/2 < asteroid.x + asteroid.r &&
-			this->y - this->h /2 < asteroid.y + asteroid.r && this->y + this->h/2 > asteroid.y - asteroid.r)
-		{
-			this->b->playing = false;
-			asteroid._todelete = true;
-		}
+		vector2 asteroidCenter{ asteroid.x, asteroid.y };
+		float asteroidR = asteroid.r;
+		float distanceX = fabs(playerCenter.x - asteroidCenter.x);
+		float distanceY = fabs(playerCenter.y - asteroidCenter.y);
+		float distanceP = std::sqrt(std::pow(distanceX, 2) + std::pow(distanceY, 2));
+		if (distanceP < playerR + asteroidR) b->playing = false;
 	}
+	//drawing::drawCircle(x,y,playerR,36,{1,0,0,1});
+	//drawing::End(wnd);
 }
 
