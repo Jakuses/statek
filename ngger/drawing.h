@@ -16,11 +16,11 @@ struct color4_t {
 class drawing
 {	
 public:
-	static void drawRect(int x, int y, int w, int h, color4_t color);
-	static void drawLine(int x1, int y1, int x2, int y2, color4_t color);
-	static void drawCircle(int x,int y, int r, int segments, color4_t color);
+	static void drawRect(float x, float y, float w, float h, color4_t color);
+	static void drawLine(float x1, float y1, float x2, float y2, color4_t color);
+	static void drawCircle(float x, float y, float r, float segments, color4_t color);
 	static void drawTriangle(vector2 pos1, vector2 pos2, vector2 pos3, color4_t color);
-	static void fillCircle(int cx, int cy, int r, int segments, color4_t color);
+	static void fillCircle(float cx, float cy, float r, float segments, color4_t color);
 	static void Begin();
 	static void End(window* wnd);
 };

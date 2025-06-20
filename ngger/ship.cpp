@@ -2,25 +2,24 @@
 #include "drawing.h"
 #include "window.h"
 #include "board.h"
-
 #include <iostream>
 #include "bullet.h"
 using namespace std;
 ship::ship(float x, float y, float w, float h, window* wnd, board* b)
-	:x(x), y(y), w(w), h(h), wnd(wnd), speedMax(150), speedx({ 0,0 }), speedy({ 0,0 }) {
+	:x(x), y(y), w(w), h(h), wnd(wnd), speedMax(150.f), speedx({ 0,0 }), speedy({ 0,0 }) {
 	this->b = b;
-	playerBorder = this->b->y + this->b->h * 2 / 3;
-	shotSpeed = 250;
-	shotDelay = 500;
+	playerBorder = this->b->y + this->b->h * 2.f / 3.f;
+	shotSpeed = 250.f;
+	shotDelay = 500.f;
 	this->health = PLAYER_MAX_HEALTH;
 }
 void ship::draw()
 {
-	drawing::drawRect(this->x-0.5*this->w, this->y-0*this->w,		this->w*0.1,this->h*0.5,{0,1,1,1});
-	drawing::drawRect(this->x-0.4*this->w, this->y+0.15*this->w,	this->w*0.8,this->h*0.1,{0,1,1,1});
-	drawing::drawRect(this->x+0.4*this->w, this->y-0*this->w,		this->w*0.1,this->h*0.5,{0,1,1,1});
-	drawing::drawRect(this->x-0.2*this->w, this->y-0.2*this->w,		this->w*0.4,this->h*0.4,{0,1,1,1});
-	drawing::drawRect(this->x-0.1*this->w, this->y-0.5*this->w,		this->w*0.2,this->h*0.3,{0,1,1,1});
+	drawing::drawRect(this->x-0.5f*this->w, this->y-0.f*this->w,			this->w*0.1f,this->h*0.5f,{0,1,1,1});
+	drawing::drawRect(this->x-0.4f*this->w, this->y+0.15f*this->w,		this->w*0.8f,this->h*0.1f,{0,1,1,1});
+	drawing::drawRect(this->x+0.4f*this->w, this->y-0.f*this->w,			this->w*0.1f,this->h*0.5f,{0,1,1,1});
+	drawing::drawRect(this->x-0.2f*this->w, this->y-0.2f*this->w,		this->w*0.4f,this->h*0.4f,{0,1,1,1});
+	drawing::drawRect(this->x-0.1f*this->w, this->y-0.5f*this->w,		this->w*0.2f,this->h*0.3f,{0,1,1,1});
 }
 
 void ship::update()
@@ -38,7 +37,7 @@ void ship::move()
 	}
 	if (this->wnd->keys['S']) {
 		this->speedy.y = speedMax;
-	}
+	} 
 	if (this->wnd->keys['W']) {
 		this->speedy.x = speedMax;
 	}

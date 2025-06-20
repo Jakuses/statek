@@ -1,6 +1,6 @@
 #include "drawing.h"
 #include "window.h"
-void drawing::drawRect(int x, int y, int w, int h, color4_t color)
+void drawing::drawRect(float x, float y, float w, float h, color4_t color)
 {
 	glColor4f(color.r, color.g, color.b, color.a);
 	glBegin(GL_QUADS);
@@ -11,7 +11,7 @@ void drawing::drawRect(int x, int y, int w, int h, color4_t color)
 	glEnd();
 }
 
-void drawing::drawLine(int x1, int y1, int x2, int y2, color4_t color)
+void drawing::drawLine(float x1, float y1, float x2, float y2, color4_t color)
 {
 	glColor4f(color.r, color.g, color.b, color.a);
 	glBegin(GL_LINES);
@@ -21,14 +21,14 @@ void drawing::drawLine(int x1, int y1, int x2, int y2, color4_t color)
 	glEnd();
 }
 
-void drawing::drawCircle(int cx, int cy, int r, int segments, color4_t color)
+void drawing::drawCircle(float cx, float cy, float r, float segments, color4_t color)
 {
 	glColor4f(color.r, color.g, color.b, color.a);
 	glBegin(GL_LINE_LOOP);
 
 	for (int i = 0; i <= segments; i++)
 	{
-		float angle = 2.0f * M_PI * (float)i / (float)segments;
+		float angle = 2.0f * (float)M_PI * (float)i / (float)segments;
 		float x = cx + r * cos(angle);
 		float y = cy + r * sin(angle);
 		glVertex2f(x, y);
@@ -46,14 +46,14 @@ void drawing::drawTriangle(vector2 pos1, vector2 pos2, vector2 pos3, color4_t co
 	glVertex3f(pos3.x, pos3.y, 0);
 	glEnd();
 }
-void drawing::fillCircle(int cx, int cy, int r, int segments, color4_t color)
+void drawing::fillCircle(float cx, float cy, float r, float segments, color4_t color)
 {
 	glColor4f(color.r, color.g, color.b, color.a);
 	glBegin(GL_TRIANGLE_FAN);
 
 	for (int i = 0; i <= segments; i++)
 	{
-		float angle = 2.0f * M_PI * (float)i / (float)segments;
+		float angle = 2.0f * (float)M_PI * (float)i / (float)segments;
 		float x = cx + r * cos(angle);
 		float y = cy + r * sin(angle);
 		glVertex2f(x, y);

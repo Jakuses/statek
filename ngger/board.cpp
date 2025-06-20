@@ -14,7 +14,7 @@ void board::Draw(){
 	for (auto& asteroid : asteroids) {
 		asteroid.Draw();
 
-	}
+	}  
 	int offset = 0;
 	for (int i = 0; i < this->player->health; i++) {
 		if(i%2==0)utils::drawHeartLeft(this->x + 20 + i * 20 + offset, this->y + 20, 20, 20);

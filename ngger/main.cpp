@@ -7,7 +7,7 @@ using namespace std;
 int main() {
 	cout << "test";
 	window wnd(800, 600, "Nigabols");
-	board b(10,10,wnd.width - 20,wnd.height - 20, &wnd);
+	board b(10.f,10.f,wnd.width - 20.f,wnd.height - 20.f, &wnd);
 	while (b.playing)
 	{
 		float time_start = timeGetTime();
