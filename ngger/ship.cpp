@@ -12,6 +12,7 @@ ship::ship(float x, float y, float w, float h, window* wnd, board* b)
 	playerBorder = this->b->y + this->b->h * 2 / 3;
 	shotSpeed = 250;
 	shotDelay = 500;
+	this->health = PLAYER_MAX_HEALTH;
 }
 void ship::draw()
 {
@@ -103,3 +104,4 @@ void ship::collisionWithAsteroids()
 		}
 	}
 }
+

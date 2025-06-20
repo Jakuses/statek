@@ -24,10 +24,10 @@
 class board
 {
 private:
-	ship* player ;
 	window* wnd;
 	int lastAsteroid = 0;
 public:
+	ship* player;
 	float deltaTime;
 	float x, y, w, h;
 	float asteroidDelay;

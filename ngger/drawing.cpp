@@ -37,6 +37,31 @@ void drawing::drawCircle(int cx, int cy, int r, int segments, color4_t color)
 	glEnd();
 }
 
+void drawing::drawTriangle(vector2 pos1, vector2 pos2, vector2 pos3, color4_t color)
+{
+	glColor4f(color.r, color.g, color.b, color.a);
+	glBegin(GL_TRIANGLES);
+	glVertex3f(pos1.x, pos1.y, 0);
+	glVertex3f(pos2.x, pos2.y, 0);
+	glVertex3f(pos3.x, pos3.y, 0);
+	glEnd();
+}
+void drawing::fillCircle(int cx, int cy, int r, int segments, color4_t color)
+{
+	glColor4f(color.r, color.g, color.b, color.a);
+	glBegin(GL_TRIANGLE_FAN);
+
+	for (int i = 0; i <= segments; i++)
+	{
+		float angle = 2.0f * M_PI * (float)i / (float)segments;
+		float x = cx + r * cos(angle);
+		float y = cy + r * sin(angle);
+		glVertex2f(x, y);
+	}
+
+	glEnd();
+}
+
 void drawing::Begin()
 {
 	glClear(GL_COLOR_BUFFER_BIT);

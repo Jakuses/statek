@@ -3,6 +3,7 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include <cmath>
+#include "utils.h"
 #define M_PI 3.14
 
 class window;
@@ -18,6 +19,8 @@ public:
 	static void drawRect(int x, int y, int w, int h, color4_t color);
 	static void drawLine(int x1, int y1, int x2, int y2, color4_t color);
 	static void drawCircle(int x,int y, int r, int segments, color4_t color);
+	static void drawTriangle(vector2 pos1, vector2 pos2, vector2 pos3, color4_t color);
+	static void fillCircle(int cx, int cy, int r, int segments, color4_t color);
 	static void Begin();
 	static void End(window* wnd);
 };
